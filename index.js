@@ -8,7 +8,7 @@ const BeSub2022 = require('./staffRoutes/BeSub2022.js')
 
 
 const app = express()
-const port = 5050
+const port = 5000
 
 
 app.use(cors({ credentials: true}))
