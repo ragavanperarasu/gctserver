@@ -19,70 +19,92 @@ const scihumStaffColl = require('../staffModels/scihumStaff')
 const staffLoginColl = require('../staffModels/staffLogin')
 
 router.post('/newstaff', async (req, res, next) => {
-    const { name, deg, des, dept, mob, mail, cpurl, ciurl, pin } = req.body
+    const { name, deg, des, dept, mob, mail, cpurl, ciurl, pin, cdate } = req.body
+    
+    
+    const lmail = mail.toLowerCase();
+    let scc;
+    let scl;
+
+    try{
     if(dept === "Civil Engineering"){
-        await civilStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await civilStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Mechanical Engineering"){
-        await mechStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await mechStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Electrical And Electronics Engineering"){
-        await eeeStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await eeeStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Electronics And Communication Engineering"){
-        await eceStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await eceStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Production Engineering"){
-        await prodStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await prodStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Electronics And Instrumentation Engineering"){
-        await eandiStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await eandiStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Computer Science Engineering"){
-        await cseStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await cseStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Information Technology"){
-        await itStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await itStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Industrial Bio Technology"){
-        await ibtStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await ibtStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Mathematics"){
-        await mathsStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await mathsStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Physics"){
-        await physicsStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await physicsStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Chemistry"){
-        await chemStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await chemStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "English"){
-        await englishStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await englishStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Physical Education"){
-        await phyeduStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await phyeduStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
     else if(dept === "Science-Humanities"){
-        await scihumStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:mail, cpurl:cpurl, ciurl:ciurl, pin:pin})
-        await staffLoginColl.create({mail:mail,pin:pin,dept:dept})
+        scc = await scihumStaffColl.create({name:name,deg:deg, des:des, dept:dept, mob:mob, mail:lmail, cpurl:cpurl, ciurl:ciurl, pin:pin, cdate:cdate})
+        scl = await staffLoginColl.create({mail:lmail,pin:pin,dept:dept})
     }
-    
-    console.log(req.body)
     res.send("success")
+}
+catch (error){
+    if (error.code === 11000) { 
+        if (error.keyPattern.mob) {
+            res.send("mobile number already exists") 
+        } 
+        else if (error.keyPattern.mail) {
+            res.send("mail already exists")
+        }
+    } else {
+        console.log("Error:", error.message);
+    }
+}
+
+    
+    
+    
 })
 
 module.exports = router

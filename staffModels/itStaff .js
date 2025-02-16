@@ -10,11 +10,12 @@ var itStaffModel = usersDB.model('itStaff', new mongoose.Schema({
     deg:String,
     des:String,
     dept:String,
-    mob:String,
-    mail:String,
+    mob:{ type: String, unique: true, required: true },
+    mail:{ type: String, unique: true, required: true },
     cpurl:String,
     ciurl:String,
     pin:String,
+    cdate:String,
     post:[
         {
             sub:String,
