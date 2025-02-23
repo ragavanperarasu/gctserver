@@ -15,7 +15,7 @@ const prodModel = require('../RegModel/BEReg2022/prodModel')
 router.post('/besub2022', async (req, res, next) => {
     const { dept, sem, reg } = req.body
     let sub;
-    console.log(req.body)
+
     if(dept === "Civil Engineering"){
         sub = await civilModel.findOne({sem:sem})
     }
