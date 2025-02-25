@@ -12,21 +12,21 @@ var BEReg2022qprodModel = usersDB.model('BEReg2022qprod', new mongoose.Schema({
             subname:String,
             semqus:[
                 {
-                    year:String,
+                    year:{ type: String, unique: true, required: true },
                     durl:String,
                     own:String
                 }
             ],
             utoqus:[
                 {
-                    year:String,
+                    year:{ type: String, unique: true, required: true },
                     durl:String,
                     own:String
                 }
             ],
             uttqus:[
                 {
-                    year:String,
+                    year:{ type: String, unique: true, required: true },
                     durl:String,
                     own:String
                 }
