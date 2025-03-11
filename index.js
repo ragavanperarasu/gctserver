@@ -22,6 +22,11 @@ const reputtqusupl = require('./repRoutes/reputtQusUpl.js')
 const repyoutubeupl = require('./repRoutes/repYoutubeUpl.js')
 const repsnoteupl = require('./repRoutes/repSnoteUpl.js')
 
+const stugetdepvalue = require('./repRoutes/stuGetDepValue.js')
+const timesyll = require('./repRoutes/timeSyll.js')
+
+const message = require('./repRoutes/message.js')
+
 const app = express()
 const port = 5000
 
@@ -48,6 +53,9 @@ app.use('/',reputtqusupl)
 app.use('/',repyoutubeupl)
 
 app.use('/',repsnoteupl)
+app.use('/',stugetdepvalue)
+app.use('/',timesyll)
+app.use('/',message)
 
 app.get('/', (req, res) => {
   res.send('Hello!')
